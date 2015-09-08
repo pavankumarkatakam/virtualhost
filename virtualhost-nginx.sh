@@ -96,10 +96,9 @@ if [ "$action" == 'create' ]
 			error_page 404 /index.php;
 
 			location ~ \.php$ {
-				fastcgi_split_path_info ^(.+\.php)(/.+)\$;
-				fastcgi_pass 127.0.0.1:9000;
-				fastcgi_index index.php;
-				include fastcgi_params;
+				include snippets/fastcgi-php.conf;
+				 fastcgi_pass unix:/var/run/php5-fpm.sock;
+
 			}
 
 			location ~ /\.ht {
